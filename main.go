@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"strconv"
 
 	"fyne.io/fyne/v2"
@@ -10,8 +11,12 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
+//go:embed img/icon.png
+var icon []byte
+
 func main() {
 	a := app.NewWithID("io.github.jacalz.focalplane")
+	a.SetIcon(fyne.NewStaticResource("icon.png", icon))
 	w := a.NewWindow("Focalplane")
 
 	// Validators for entry contents.

@@ -1,5 +1,5 @@
 [Details]
-  Icon = "internal/assets/icons/icon-512.png"
+  Icon = "img/icon.png"
   Name = "Focalplane"
   ID = "io.github.jacalz.focalplane"
   Version = "0.0.1"
