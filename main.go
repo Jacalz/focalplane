@@ -27,7 +27,7 @@ func main() {
 	focal := &widget.Entry{PlaceHolder: "mm", Validator: uintValidator}
 	distance := &widget.Entry{PlaceHolder: "m", Validator: floatValidator}
 	aperture := &widget.Entry{PlaceHolder: "f-stops", Validator: floatValidator}
-	sensor := &widget.Select{Options: sensors}
+	sensor := &widget.Select{Options: sensors[:]}
 
 	// Building blocks for the user interface.
 	dofText := &widget.Label{Text: "Depth of field:", TextStyle: fyne.TextStyle{Bold: true}}
