@@ -1,6 +1,6 @@
 package main
 
-var sensors = []string{
+var sensors = [...]string{
 	// Small format
 	"Fullframe (35mm)",
 	"APS-H (Canon)",
@@ -44,9 +44,4 @@ var sensorToCoC = map[string]float64{
 	"8x10": 0.22e-3,
 	"5x7":  0.15e-3,
 	"4x5":  0.11e-3,
-}
-
-// Based on algorithm from https://en.wikipedia.org/wiki/Depth_of_field.
-func depthOfField(focallength, distance, aperture, circle float64) float64 {
-	return 2 * distance * distance * aperture * circle / (focallength * focallength)
 }
