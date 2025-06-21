@@ -9,8 +9,6 @@ var sensors = [...]string{
 	"Micro Four Thirds",
 	"1\"",
 	// Medium format
-	"6x17",
-	"6x12",
 	"6x9",
 	"6x7",
 	"6x6",
@@ -23,48 +21,44 @@ var sensors = [...]string{
 
 // Sensor name to circle of confusion in meters.
 // Based on table from https://en.wikipedia.org/wiki/Circle_of_confusion.
-var sensorToCoC = map[string]float64{
+var circleOfConfusion = [len(sensors)]float64{
 	// Small format
-	"Fullframe (35mm)":  0.029e-3,
-	"APS-H (Canon)":     0.023e-3,
-	"APS-C (Generic)":   0.019e-3,
-	"APS-C (Canon)":     0.018e-3,
-	"Micro Four Thirds": 0.015e-3,
-	"1\"":               0.011e-3,
+	0.029e-3,
+	0.023e-3,
+	0.019e-3,
+	0.018e-3,
+	0.015e-3,
+	0.011e-3,
 
 	// Medium format
-	"6x17":        0.12e-3,
-	"6x12":        0.083e-3,
-	"6x9":         0.067e-3,
-	"6x7":         0.059e-3,
-	"6x6":         0.053e-3,
-	"645 (6x4.5)": 0.047e-3,
+	0.067e-3,
+	0.059e-3,
+	0.053e-3,
+	0.047e-3,
 
 	// Large format
-	"8x10": 0.22e-3,
-	"5x7":  0.15e-3,
-	"4x5":  0.11e-3,
+	0.22e-3,
+	0.15e-3,
+	0.11e-3,
 }
 
-var sensorToCropFactor = map[string]float64{
+var cropFactor = [len(sensors)]float64{
 	// Small format
-	"Fullframe (35mm)":  1.0,
-	"APS-H (Canon)":     1.3,
-	"APS-C (Generic)":   1.5,
-	"APS-C (Canon)":     1.6,
-	"Micro Four Thirds": 2.0,
-	"1\"":               2.7,
+	1.0,
+	1.3,
+	1.5,
+	1.6,
+	2.0,
+	2.7,
 
 	// Medium format
-	"6x17":        1.0,
-	"6x12":        1.3,
-	"6x9":         0.43,
-	"6x7":         0.5,
-	"6x6":         0.55,
-	"645 (6x4.5)": 0.62,
+	0.43,
+	0.5,
+	0.55,
+	0.62,
 
 	// Large format
-	"8x10": 0.13,
-	"5x7":  0.20,
-	"4x5":  0.27,
+	0.13,
+	0.20,
+	0.27,
 }

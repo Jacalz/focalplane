@@ -16,7 +16,7 @@ func equivalentView() fyne.CanvasObject {
 	sensor := &widget.Select{Options: sensors[:]}
 
 	text := &widget.Label{Text: "Equivalent on full frame:", TextStyle: fyne.TextStyle{Bold: true}}
-	value := &widget.Label{Text: "-"}
+	value := &widget.Label{}
 	data := &widget.Form{
 		Items: []*widget.FormItem{
 			{Text: "Focal length", Widget: focal, HintText: "Given in millimeters."},
@@ -27,12 +27,13 @@ func equivalentView() fyne.CanvasObject {
 	recalculateDOF := func(_ string) {
 		focallengh, errF := strconv.ParseUint(focal.Text, 10, 64)
 		fstop, errA := strconv.ParseFloat(aperture.Text, 64)
-		if cmp.Or(errF, errA) != nil {
-			value.SetText("-")
+		selection := sensor.SelectedIndex()
+		if cmp.Or(errF, errA) != nil || selection < 0 {
+			value.SetText("")
 			return
 		}
 
-		crop := sensorToCropFactor[sensor.Selected]
+		crop := cropFactor[selection]
 		value.SetText(fmt.Sprintf("%.2f mm, f %.1f", float64(focallengh)*crop, fstop*crop))
 	}
 

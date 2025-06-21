@@ -21,8 +21,8 @@ func main() {
 	w := a.NewWindow("Focalplane")
 
 	tabs := &container.AppTabs{Items: []*container.TabItem{
-		{Text: "Crop", Content: equivalentView()},
-		{Text: "DoF", Content: dofView()},
+		{Text: "Crop Factor", Content: equivalentView()},
+		{Text: "Depth of Field", Content: dofView()},
 	}}
 	w.SetContent(tabs)
 	w.ShowAndRun()

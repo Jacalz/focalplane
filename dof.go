@@ -18,7 +18,7 @@ func dofView() fyne.CanvasObject {
 
 	// Building blocks for the user interface.
 	text := &widget.Label{Text: "Depth of field:", TextStyle: fyne.TextStyle{Bold: true}}
-	value := &widget.Label{Text: "-"}
+	value := &widget.Label{}
 	data := &widget.Form{
 		Items: []*widget.FormItem{
 			{Text: "Focal length", Widget: focal, HintText: "Given in millimeters."},
@@ -34,13 +34,13 @@ func dofView() fyne.CanvasObject {
 		focallengh, errF := strconv.ParseUint(focal.Text, 10, 64)
 		distance, errD := strconv.ParseFloat(distance.Text, 64)
 		fstop, errA := strconv.ParseFloat(aperture.Text, 64)
-		circle := sensorToCoC[sensor.Selected]
-		if cmp.Or(errF, errD, errA) != nil {
-			value.SetText("-")
+		selection := sensor.SelectedIndex()
+		if cmp.Or(errF, errD, errA) != nil || selection < 0 {
+			value.SetText("")
 			return
 		}
 
-		dof := depthOfField(float64(focallengh)/1000, distance, fstop, circle)
+		dof := depthOfField(float64(focallengh)/1000, distance, fstop, circleOfConfusion[selection])
 		value.SetText(strconv.FormatFloat(dof, 'f', 6, 64) + " m")
 	}
 
