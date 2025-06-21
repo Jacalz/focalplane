@@ -45,3 +45,26 @@ var sensorToCoC = map[string]float64{
 	"5x7":  0.15e-3,
 	"4x5":  0.11e-3,
 }
+
+var sensorToCropFactor = map[string]float64{
+	// Small format
+	"Fullframe (35mm)":  1.0,
+	"APS-H (Canon)":     1.3,
+	"APS-C (Generic)":   1.5,
+	"APS-C (Canon)":     1.6,
+	"Micro Four Thirds": 2.0,
+	"1\"":               2.7,
+
+	// Medium format
+	"6x17":        1.0,
+	"6x12":        1.3,
+	"6x9":         0.43,
+	"6x7":         0.5,
+	"6x6":         0.55,
+	"645 (6x4.5)": 0.62,
+
+	// Large format
+	"8x10": 0.13,
+	"5x7":  0.20,
+	"4x5":  0.27,
+}

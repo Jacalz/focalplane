@@ -5,6 +5,7 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/data/validation"
 )
 
@@ -19,6 +20,10 @@ func main() {
 	a.SetIcon(fyne.NewStaticResource("icon.png", icon))
 	w := a.NewWindow("Focalplane")
 
-	w.SetContent(dofView())
+	tabs := &container.AppTabs{Items: []*container.TabItem{
+		{Text: "Crop", Content: equivalentView()},
+		{Text: "DoF", Content: dofView()},
+	}}
+	w.SetContent(tabs)
 	w.ShowAndRun()
 }
